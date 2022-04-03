@@ -1,21 +1,21 @@
 // ==UserScript==
-// @name         ForsenPlace Script
-// @namespace    https://github.com/ForsenPlace/Script
+// @name         r/Place Script
+// @namespace    https://github.com/JonahPlusPlus/Script
 // @version      13
 // @description  Script 
-// @author       ForsenPlace
+// @author       JonahPlusPlus
 // @match        https://www.reddit.com/r/place/*
 // @match        https://new.reddit.com/r/place/*
 // @icon         https://cdn.frankerfacez.com/emoticon/545961/4
 // @require	     https://cdn.jsdelivr.net/npm/toastify-js
 // @resource     TOASTIFY_CSS https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css
-// @updateURL    https://github.com/ForsenPlace/Script/raw/main/script.user.js
-// @downloadURL  https://github.com/ForsenPlace/Script/main/script.user.js
+// @updateURL    https://github.com/JonahPlusPlus/Script/raw/main/script.user.js
+// @downloadURL  https://github.com/JonahPlusPlus/Script/main/script.user.js
 // @grant        GM_getResourceText
 // @grant        GM_addStyle
 // ==/UserScript==
 
-const ORDERS_URL = 'https://raw.githubusercontent.com/ForsenPlace/Orders/main/orders.json'
+const ORDERS_URL = 'https://raw.githubusercontent.com/JonahPlusPlus/Script/main/orders.json'
 
 const ORDER_UPDATE_DELAY = 4 * 60 * 1000
 const TOAST_DURATION = 10 * 1000
