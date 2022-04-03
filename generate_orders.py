@@ -6,8 +6,8 @@ img = Image.open("pendejo.png")
 
 pix = img.load()
 
-originx = 1836
-originy = 279
+originx = 1699
+originy = 1969
 
 color_mappings = {
     '#BE0039': 1,
