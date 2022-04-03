@@ -6,6 +6,9 @@ img = Image.open("pendejo.png")
 
 pix = img.load()
 
+originx = 1836
+originy = 279
+
 color_mappings = {
     '#BE0039': 1,
     '#FF4500': 2,
@@ -55,7 +58,7 @@ arr = []
 
 for x in range(32):
     for y in range(32):
-        arr.append([x,y,color_mappings[closest_color(pix[x,y][:3])]])
+        arr.append([x+originx,y+originy,color_mappings[closest_color(pix[x,y][:3])]])
 
 with open('data.json', 'w') as f:
     json.dump(arr, f)
