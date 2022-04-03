@@ -11,5 +11,5 @@ JAJAJAJAJAJAJAJAJAJA
 
 ## Things to know
 
-- The script automatically fetches new [orders](https://github.com/JonahPlusPlus/Script/orders.json).
+- The script automatically fetches new [orders](https://github.com/JonahPlusPlus/Script/blob/main/orders.json).
 - Using multiple accounts at the same time can get you "banned" (you get a very long delay) from r/place.
