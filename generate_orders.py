@@ -6,8 +6,8 @@ img = Image.open("jaja.png")
 
 pix = img.load()
 
-originx = 1284
-originy = 1948
+originx = 1985
+originy = 1730
 
 color_mappings = {
     '#BE0039': 1,
