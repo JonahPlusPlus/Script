@@ -166,6 +166,9 @@ function updateOrders() {
 async function executeOrders() {
 	var ctx;
 	try {
+		ctx = await getCanvasFromUrl(await getCurrentImageUrl('0'), 0, 0);
+		ctx = await getCanvasFromUrl(await getCurrentImageUrl('1'), 1000, 0);
+		ctx = await getCanvasFromUrl(await getCurrentImageUrl('2'), 0, 1000);
 		ctx = await getCanvasFromUrl(await getCurrentImageUrl('3'), 1000, 1000);
 	} catch (e) {
 		console.warn('Error obtaining map', e);
@@ -321,7 +324,8 @@ function getCanvasFromUrl(url, x, y) {
 	return new Promise((resolve, reject) => {
 		var ctx = canvas.getContext('2d');
 		var img = new Image();
-		img.crossOrigin = 'anonymous';
+		img.crossOrigin = 'https://www.reddit.com';
+		img.Cro
 		img.onload = () => {
 			ctx.drawImage(img, x, y);
 			resolve(ctx);
