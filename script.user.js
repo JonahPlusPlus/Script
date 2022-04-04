@@ -166,9 +166,6 @@ function updateOrders() {
 async function executeOrders() {
 	var ctx;
 	try {
-		ctx = await getCanvasFromUrl(await getCurrentImageUrl('0'), 0, 0);
-		ctx = await getCanvasFromUrl(await getCurrentImageUrl('1'), 1000, 0);
-		ctx = await getCanvasFromUrl(await getCurrentImageUrl('2'), 0, 1000);
 		ctx = await getCanvasFromUrl(await getCurrentImageUrl('3'), 1000, 1000);
 	} catch (e) {
 		console.warn('Error obtaining map', e);
@@ -301,7 +298,7 @@ async function getCurrentImageUrl(tag) {
 					},
 					'extensions': {},
 					'operationName': 'replace',
-					'query': "subscription replace($input: SubscribeInput!) {\n  subscribe(input: $input) {\n    id\n    ... on BasicMessage {\n      data {\n        __typename\n        ... on FullFrameMessageData {\n          __typename\n          name\n          timestamp\n        }\n        ... on DiffFrameMessageData {\n          __typename\n          name\n          currentTimestamp\n          previousTimestamp\n        }\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
+					'query': "subscription replace($input: SubscribeInput!) { subscribe(input: $input) { id ... on BasicMessage { data { __typename ... on FullFrameMessageData { __typename name timestamp } } __typename } __typename } }",
 				}
 			}));
 		};
