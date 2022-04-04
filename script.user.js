@@ -324,31 +324,30 @@ async function getCurrentImageUrl(tag) {
 function getCanvasFromUrl(url, x, y) {
 	return new Promise((resolve, reject) => {
 		var ctx = canvas.getContext('2d');
-		// var img = new Image();
-		// img.onload = () => {
-		// 	ctx.drawImage(img, x, y);
-		//	resolve(ctx);
-		//};
-		//img.onerror = reject;
-		//img.src = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
 
 		GM_xmlhttpRequest({
 			method: "GET",
 			responseType: "blob",
 			url: url,
+			headers: {
+				'origin': 'https://hot-potato.reddit.com',
+				'referer': 'https://hot-potato.reddit.com/',
+				'apollographql-client-name': 'mona-lisa',
+				'Authorization': `Bearer ${accessToken}`,
+				'Content-Type': 'application/json'
+			},
 			onload: function(data) {
 				if (data.status == 200) {
 					console.log("Got image data!");
 				}
-				URL.createObjectURL(data.response);
+				var safe_url = URL.createObjectURL(data.response);
 				let img = new Image();
-				image.crossOrigin = "anonymous"
 				img.onload = () => {
-					URL.revokeObjectURL(url);
+					URL.revokeObjectURL(safe_url);
 					ctx.drawImage(img, x, y);
 					resolve(ctx);
 				}
-				img.src = url;
+				img.src = safe_url;
 			}
 		})
 	});
