@@ -329,7 +329,7 @@ function getCanvasFromUrl(url, x, y) {
 			resolve(ctx);
 		};
 		img.onerror = reject;
-		img.src = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+		img.src = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
 	});
 }
 
