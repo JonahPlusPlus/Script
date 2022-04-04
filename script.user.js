@@ -336,11 +336,11 @@ function getCanvasFromUrl(url, x, y) {
 			method: "GET",
 			responseType: "blob",
 			url: url,
-			onload: function(response) {
-				if (response.status == 200) {
+			onload: function(data) {
+				if (data.status == 200) {
 					console.log("Got image data!")
 				}
-				URL.createObjectURL(response)
+				URL.createObjectURL(data.response)
 				let img = new Image()
 				img.onload = () => {
 					URL.revokeObjectURL(url)
