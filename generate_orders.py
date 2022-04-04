@@ -2,7 +2,7 @@ from PIL import Image
 from math import sqrt
 import json
 
-img = Image.open("pendejo.png")
+img = Image.open("jaja.png")
 
 pix = img.load()
 
@@ -56,9 +56,10 @@ def closest_color(rgb):
 
 arr = []
 
-for y in range(32):
-    for x in range(32):
-        arr.append([x+originx,y+originy,color_mappings[closest_color(pix[x,y][:3])]])
+for y in range(19):
+    for x in range(14):
+        if (pix[x,y][:3] != (69, 42, 0)):
+            arr.append([x+originx,y+originy,color_mappings[closest_color(pix[x,y][:3])]])
 
 with open('data.json', 'w') as f:
     json.dump(arr, f)

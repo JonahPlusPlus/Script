@@ -20,7 +20,7 @@ const ORDERS_URL = 'https://raw.githubusercontent.com/JonahPlusPlus/Script/main/
 
 const ORDER_UPDATE_DELAY = 4 * 60 * 1000
 const TOAST_DURATION = 10 * 1000
-const MAP_ERROR_RETRY_DELAY = 6 * 1000
+const MAP_ERROR_RETRY_DELAY = 15 * 1000
 const PARSE_ERROR_REFRESH_DELAY = 10 * 1000
 const AFTER_PAINT_DELAY = 5.25 * 60 * 1000
 const CHECK_AGAIN_DELAY = 30 * 1000
