@@ -13,6 +13,7 @@
 // @downloadURL  https://github.com/JonahPlusPlus/Script/main/script.user.js
 // @grant        GM_getResourceText
 // @grant        GM_addStyle
+// @grant		 GM_xmlhttpRequest
 // ==/UserScript==
 
 const ORDERS_URL = 'https://raw.githubusercontent.com/JonahPlusPlus/Script/main/orders.json'
@@ -323,13 +324,28 @@ async function getCurrentImageUrl(tag) {
 function getCanvasFromUrl(url, x, y) {
 	return new Promise((resolve, reject) => {
 		var ctx = canvas.getContext('2d');
-		var img = new Image();
-		img.onload = () => {
-			ctx.drawImage(img, x, y);
-			resolve(ctx);
-		};
-		img.onerror = reject;
-		img.src = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+		// var img = new Image();
+		// img.onload = () => {
+		// 	ctx.drawImage(img, x, y);
+		//	resolve(ctx);
+		//};
+		//img.onerror = reject;
+		//img.src = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+
+		GM_xmlhttpRequest({
+			method: "GET",
+			responseType: "blob",
+			url: url,
+			onload: function(response) {
+				URL.createObjectURL(response)
+				let img = new Image()
+				img.onload = () => {
+					URL.revokeObjectURL(url)
+					resolve(img)
+				}
+				img.src = Uint8ClampedArray
+			}
+		})
 	});
 }
 
