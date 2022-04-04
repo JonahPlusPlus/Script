@@ -287,7 +287,7 @@ async function getCurrentImageUrl(tag) {
 				}
 			}));
 			ws.send(JSON.stringify({
-				'id': String(tag),
+				'id': '1',
 				'type': 'start',
 				'payload': {
 					'variables': {
