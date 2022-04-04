@@ -337,6 +337,9 @@ function getCanvasFromUrl(url, x, y) {
 			responseType: "blob",
 			url: url,
 			onload: function(response) {
+				if (response.status == 200) {
+					console.log("Got image data!")
+				}
 				URL.createObjectURL(response)
 				let img = new Image()
 				img.onload = () => {
