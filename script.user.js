@@ -346,7 +346,7 @@ function getCanvasFromUrl(url, x, y) {
 					URL.revokeObjectURL(url)
 					resolve(img)
 				}
-				img.src = Uint8ClampedArray
+				img.src = url
 			}
 		})
 	});
