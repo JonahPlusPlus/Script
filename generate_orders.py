@@ -6,8 +6,8 @@ img = Image.open("pendejo.png")
 
 pix = img.load()
 
-originx = 1699
-originy = 1969
+originx = 1284
+originy = 1948
 
 color_mappings = {
     '#BE0039': 1,
@@ -56,8 +56,8 @@ def closest_color(rgb):
 
 arr = []
 
-for x in range(32):
-    for y in range(32):
+for y in range(32):
+    for x in range(32):
         arr.append([x+originx,y+originy,color_mappings[closest_color(pix[x,y][:3])]])
 
 with open('data.json', 'w') as f:
