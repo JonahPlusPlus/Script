@@ -13,7 +13,7 @@
 // @downloadURL  https://github.com/JonahPlusPlus/Script/main/script.user.js
 // @grant        GM_getResourceText
 // @grant        GM_addStyle
-// @grant		 GM_xmlhttpRequest
+// @grant		 GM.xmlHttpRequest
 // ==/UserScript==
 
 const ORDERS_URL = 'https://raw.githubusercontent.com/JonahPlusPlus/Script/main/orders.json'
@@ -246,6 +246,14 @@ async function executeOrders() {
 	setTimeout(executeOrders, CHECK_AGAIN_DELAY);
 }
 
+function getCanvasIndex(x, y) {
+    if (x <= 999) {
+        return y <= 999 ? 0 : 2;
+    } else {
+        return y <= 999 ? 1 : 3;
+    }
+}
+
 function place(x, y, color) {
 	return fetch('https://gql-realtime-2.reddit.com/query', {
 		method: 'POST',
@@ -256,11 +264,11 @@ function place(x, y, color) {
 					'actionName': 'r/replace:set_pixel',
 					'PixelMessageData': {
 						'coordinate': {
-							'x': x,
-							'y': y
+							'x': x % 1000,
+							'y': y % 1000
 						},
 						'colorIndex': color,
-						'canvasIndex': 0
+						'canvasIndex': getCanvasIndex(x, y)
 					}
 				}
 			},
@@ -324,32 +332,21 @@ async function getCurrentImageUrl(tag) {
 function getCanvasFromUrl(url, x, y) {
 	return new Promise((resolve, reject) => {
 		var ctx = canvas.getContext('2d');
-
-		GM_xmlhttpRequest({
+		GM.xmlHttpRequest({
 			method: "GET",
-			responseType: "blob",
 			url: url,
-			headers: {
-				'origin': 'https://hot-potato.reddit.com',
-				'referer': 'https://hot-potato.reddit.com/',
-				'apollographql-client-name': 'mona-lisa',
-				'Authorization': `Bearer ${accessToken}`,
-				'Content-Type': 'application/json'
-			},
-			onload: function(data) {
-				if (data.status == 200) {
-					console.log("Got image data!");
-				}
-				var safe_url = URL.createObjectURL(data.response);
-				let img = new Image();
+			responseType: 'blob',
+			onload: function(response) {
+				var urlCreator = window.URL || window.webkitURL;
+				var imageUrl = urlCreator.createObjectURL(this.response);
+				var img = new Image();
 				img.onload = () => {
-					URL.revokeObjectURL(safe_url);
 					ctx.drawImage(img, x, y);
 					resolve(ctx);
-				}
-				img.src = safe_url;
+				};
+			img.src = imageUrl;
 			}
-		})
+		});
 	});
 }
 
