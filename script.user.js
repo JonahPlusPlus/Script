@@ -324,14 +324,12 @@ function getCanvasFromUrl(url, x, y) {
 	return new Promise((resolve, reject) => {
 		var ctx = canvas.getContext('2d');
 		var img = new Image();
-		img.crossOrigin = 'https://www.reddit.com';
-		img.Cro
 		img.onload = () => {
 			ctx.drawImage(img, x, y);
 			resolve(ctx);
 		};
 		img.onerror = reject;
-		img.src = url;
+		img.src = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
 	});
 }
 
