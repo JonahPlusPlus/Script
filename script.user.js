@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         r/Place Script
 // @namespace    https://github.com/JonahPlusPlus/Script
-// @version      17
+// @version      18
 // @description  Script 
 // @author       JonahPlusPlus
 // @match        https://www.reddit.com/r/place/*
@@ -345,7 +345,7 @@ function getCanvasFromUrl(url, x, y) {
 				img.onload = () => {
 					URL.revokeObjectURL(url);
 					ctx.drawImage(img, x, y);
-					resolve(img);
+					resolve(ctx);
 				}
 				img.src = url;
 			}
