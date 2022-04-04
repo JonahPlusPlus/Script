@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         r/Place Script
 // @namespace    https://github.com/JonahPlusPlus/Script
-// @version      19
+// @version      20
 // @description  Script 
 // @author       JonahPlusPlus
 // @match        https://www.reddit.com/r/place/*
