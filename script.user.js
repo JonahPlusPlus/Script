@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         r/Place Script
 // @namespace    https://github.com/JonahPlusPlus/Script
-// @version      16
+// @version      17
 // @description  Script 
 // @author       JonahPlusPlus
 // @match        https://www.reddit.com/r/place/*
@@ -338,15 +338,16 @@ function getCanvasFromUrl(url, x, y) {
 			url: url,
 			onload: function(data) {
 				if (data.status == 200) {
-					console.log("Got image data!")
+					console.log("Got image data!");
 				}
-				URL.createObjectURL(data.response)
-				let img = new Image()
+				URL.createObjectURL(data.response);
+				let img = new Image();
 				img.onload = () => {
-					URL.revokeObjectURL(url)
-					resolve(img)
+					URL.revokeObjectURL(url);
+					ctx.drawImage(img, x, y);
+					resolve(img);
 				}
-				img.src = url
+				img.src = url;
 			}
 		})
 	});
